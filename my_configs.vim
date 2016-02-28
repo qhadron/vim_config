@@ -99,4 +99,9 @@ set smartcase
 inoremap jj <Esc>
 nnoremap JJJJ <Nop>
 
+" Force quit from a file 
+nnoremap <leader><S-Q> :q!
+
+" Reload this vim config
+nnoremap <leader>r :source ~/.vim_runtime/my_configs.vim<cr>
 
