@@ -62,19 +62,22 @@ set statusline+=\ [%b][0x%B]\               " ASCII and byte code under cursor
 set rnu
 set number
 
-" Set autoindent
-set autoindent
-
 " Folding Stuffs
 set foldmethod=marker
+
+" Set number of undos
+set undolevels=1000
+
+" Set indenting method
+set cindent
 
 " Spaces are better than a tab character
 set expandtab
 set smarttab
 
 " Who wants an 8 character tab?  Not me!
-set shiftwidth=3
-set softtabstop=3
+set shiftwidth=4
+set softtabstop=4
 
 " Use english for spellchecking, but don't spellcheck by default
 if version >= 700
