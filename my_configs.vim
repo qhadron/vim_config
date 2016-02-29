@@ -108,3 +108,5 @@ nnoremap <leader><S-Q> :q!
 " Reload this vim config
 nnoremap <leader>r :source ~/.vim_runtime/my_configs.vim<cr>
 
+" Save and make
+nnoremap <leader>b :w<cr>:make<space>
