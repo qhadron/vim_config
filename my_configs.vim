@@ -110,3 +110,13 @@ nnoremap <leader>r :source ~/.vim_runtime/my_configs.vim<cr>
 
 " Save and make
 nnoremap <leader>b :w<cr>:make<space>
+
+" Unmap $ in insert mode
+iunmap $1
+iunmap $2
+iunmap $3
+iunmap $4
+iunmap $q
+iunmap $t
+iunmap $e
+
