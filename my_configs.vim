@@ -71,13 +71,14 @@ set undolevels=1000
 " Set indenting method
 set cindent
 
-" Spaces are better than a tab character
-set expandtab
+" Spaces are not better than a tab character
+set noexpandtab
 set smarttab
 
 " Who wants an 8 character tab?  Not me!
+set tabstop=4
 set shiftwidth=4
-set softtabstop=4
+set softtabstop=0
 
 " Use english for spellchecking, but don't spellcheck by default
 if version >= 700
@@ -102,8 +103,11 @@ set smartcase
 inoremap jj <Esc>
 nnoremap JJJJ <Nop>
 
-" Force quit from a file 
-nnoremap <leader><S-Q> :q!
+" Force quit from vim (all files)
+nnoremap <leader><S-Q> :qa!<cr>
+
+" Reload this vim config
+nnoremap <leader>r :source ~/.vim_runtime/my_configs.vim<cr>
 
 " Reload this vim config
 nnoremap <leader>r :source ~/.vim_runtime/my_configs.vim<cr>
@@ -119,4 +123,10 @@ iunmap $4
 iunmap $q
 iunmap $t
 iunmap $e
+
+" Get rid of EX mode
+nnoremap Q <nop>
+
+" Don't use unnamed buffer
+set clipboard-=unnamed
 
