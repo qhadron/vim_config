@@ -8,13 +8,12 @@ set pastetoggle=<F2>
 set showcmd
 
 " Colorscheme
+set background=dark
 if has("gui_running")
-    set background=dark
     colorscheme peaksea
 else
-    set background=light
-    colorscheme pyte
-    let g:colors_name="pyte"
+    colorscheme peaksea
+    let g:colors_name="peaksea"
 endif
 
 " Set the color of the status line
