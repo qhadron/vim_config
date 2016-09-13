@@ -115,13 +115,13 @@ nnoremap <leader>r :source ~/.vim_runtime/my_configs.vim<cr>
 nnoremap <leader>b :w<cr>:make<space>
 
 " Unmap $ in insert mode
-iunmap $1
-iunmap $2
-iunmap $3
-iunmap $4
-iunmap $q
-iunmap $t
-iunmap $e
+silent! iunmap $1
+silent! iunmap $2
+silent! iunmap $3
+silent! iunmap $4
+silent! iunmap $q
+silent! iunmap $t
+silent! iunmap $e
 
 " Get rid of EX mode
 nnoremap Q <nop>
@@ -129,3 +129,5 @@ nnoremap Q <nop>
 " Don't use unnamed buffer
 set clipboard-=unnamed
 
+" Redraw
+map <F5> :redraw!<cr>
