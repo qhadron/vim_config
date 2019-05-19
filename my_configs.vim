@@ -1,4 +1,4 @@
-" rebinds semicolon to colon (easier to type)
+"rebinds semicolon to colon (easier to type)
 nmap ; :
 
 " Binds <F2> to toggle pasting as plain text
@@ -16,47 +16,6 @@ else
     let g:colors_name="peaksea"
 endif
 
-" Set the color of the status line
-function! InsertStatuslineColor(mode)
-  if a:mode == 'i'
-    hi statusline guibg=Cyan ctermfg=6 guifg=Black ctermbg=0
-  elseif a:mode == 'r'
-    hi statusline guibg=Purple ctermfg=5 guifg=Black ctermbg=0
-  else
-    hi statusline guibg=DarkRed ctermfg=1 guifg=Black ctermbg=0
-  endif
-endfunction
-
-au InsertEnter * call InsertStatuslineColor(v:insertmode)
-au InsertLeave * hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
-set statusline=""
-" default the statusline to green when entering Vim
-hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
-set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
-set statusline+=%{&ff}] "file format
-set statusline+=%y      "filetype
-set statusline+=%h      "help file flag
-set statusline+=%m      "modified flag
-set statusline+=%r      "read only flag
-
-" Puts in the current git status
-    if count(g:pathogen_disabled, 'Fugitive') < 1   
-        set statusline+=%{fugitive#statusline()}
-    endif
-
-" Puts in syntastic warnings
-    if count(g:pathogen_disabled, 'Syntastic') < 1  
-        set statusline+=%#warningmsg#
-        set statusline+=%{SyntasticStatuslineFlag()}
-        set statusline+=%*
-    endif
-
-set statusline+=\ %=                        " align left
-set statusline+=Line:%l/%L[%p%%]            " line X of Y [percent of file]
-set statusline+=\ Col:%c                    " current column
-set statusline+=\ Buf:%n                    " Buffer number
-set statusline+=\ [%b][0x%B]\               " ASCII and byte code under cursor
-    
 " Set relative line numbers with current line displayed instead of 0
 set rnu
 set number
@@ -65,7 +24,7 @@ set number
 set foldmethod=marker
 
 " Set number of undos
-set undolevels=1000
+set undolevels=10000
 
 " Set indenting method
 set cindent
@@ -82,7 +41,7 @@ set softtabstop=0
 " Use english for spellchecking, but don't spellcheck by default
 if version >= 700
    set spl=en spell
-   set nospell
+"   set nospell
 endif
 
 " Cool tab completion stuff
@@ -102,11 +61,8 @@ set smartcase
 inoremap jj <Esc>
 nnoremap JJJJ <Nop>
 
-" Force quit from vim (all files)
-nnoremap <leader><S-Q> :qa!<cr>
-
-" Reload this vim config
-nnoremap <leader>r :source ~/.vim_runtime/my_configs.vim<cr>
+" (Almost) Force quit from vim (all files)
+nnoremap <leader><S-Q> :qa<cr>
 
 " Reload this vim config
 nnoremap <leader>r :source ~/.vim_runtime/my_configs.vim<cr>
@@ -127,7 +83,38 @@ silent! iunmap $e
 nnoremap Q <nop>
 
 " Don't use unnamed buffer
-set clipboard-=unnamed
+set clipboard+=unnamed
 
 " Redraw
 map <F5> :redraw!<cr>
+
+" visual instead of audio bell
+set visualbell
+
+" set shell to zsh
+set shell=zsh
+
+" YouCompleteMe configs
+let g:ycm_global_ycm_extra_conf  = '~/.ycm.py'
+let g:ycm_min_num_of_chars_for_completion = 2
+let g:ycm_max_num_candidates = 50
+let g:ycm_warning_symbol = '##'
+let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_auto_trigger = 1
+let g:ycm_use_clangd = 0
+
+" YouCompleteMe mappings
+nnoremap <c-c>D :YcmDiags<CR>
+nnoremap <c-F5> :YcmForceCompileAndDiagnostics<CR>
+nnoremap <c-c><F5> :YcmRestartServer<CR>
+nnoremap <c-c>g :YcmCompleter GoTo<CR>
+nnoremap <c-c>gd :YcmCompleter GoToDeclaration<CR>
+nnoremap <c-c>t :YcmCompleter GetType<CR>
+nnoremap <c-c>d :YcmCompleter GetDoc<CR>
+nnoremap <c-c>f :YcmCompleter FixIt<CR>
+nnoremap <c-c><c-f> :YcmCompleter Format<CR>
+nnoremap <c-c>o :YcmCompleter OrganizeImports<CR>
+nnoremap <F2> :YcmCompleter RefactorRename 
+let g:ycm_key_detailed_diagnostics = '<c-c><c-d>'
+let g:ycm_key_invoke_completion = '<C-Space>'
