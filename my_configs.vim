@@ -21,7 +21,9 @@ set rnu
 set number
 
 " Folding Stuffs
-set foldmethod=marker
+set foldmethod=syntax
+" Don't enable folding by default
+set nofoldenable
 
 " Set number of undos
 set undolevels=10000
@@ -38,10 +40,10 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=0
 
-" Use english for spellchecking, but don't spellcheck by default
+" Use English for spellchecking, but don't spellcheck by default (speed)
 if version >= 700
    set spl=en spell
-"   set nospell
+   set nospell
 endif
 
 " Cool tab completion stuff
@@ -82,7 +84,7 @@ silent! iunmap $e
 " Get rid of EX mode
 nnoremap Q <nop>
 
-" Don't use unnamed buffer
+" unnamed buffer
 set clipboard+=unnamed
 
 " Redraw
@@ -93,6 +95,9 @@ set visualbell
 
 " set shell to zsh
 set shell=zsh
+
+" 1 line high command line
+set cmdheight=1
 
 " YouCompleteMe configs
 let g:ycm_global_ycm_extra_conf  = '~/.ycm.py'
@@ -118,3 +123,46 @@ nnoremap <c-c>o :YcmCompleter OrganizeImports<CR>
 nnoremap <F2> :YcmCompleter RefactorRename 
 let g:ycm_key_detailed_diagnostics = '<c-c><c-d>'
 let g:ycm_key_invoke_completion = '<C-Space>'
+
+" CtrlP settings
+let g:ctrlp_switch_buffer = 'et'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+let g:ctrlp_cmd = 'CtrlPLastMode --dir'
+
+" lightline (status line) settings
+set noshowmode
+
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified', 'gitbranch' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head',
+      \   'filename': 'LightlineFilename'
+      \ },
+      \ }
+
+command! LightlineReload call LightlineReload()
+
+function! LightlineReload()
+  call lightline#init()
+  call lightline#colorscheme()
+  call lightline#update()
+endfunction
+
+function! LightlineFilename()
+  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  let modified = &modified ? ' +' : ''
+  return filename . modified
+endfunction
+
+" vim auto-pairs settings
+let g:AutoPairsFlyMode = 0
+let g:AutoPairsShrotcutToggle = '<leader>P'
+
+" spell underline asdf
+let &t_Cs = "\e[4:3m\e[58:5:1m"
+let &t_Ce = "\e[4:0m\e[59m"
+hi SpellBad gui=undercurl guisp=Red term=undercurl cterm=undercurl
