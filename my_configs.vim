@@ -162,7 +162,10 @@ endfunction
 let g:AutoPairsFlyMode = 0
 let g:AutoPairsShrotcutToggle = '<leader>P'
 
-" spell underline asdf
+" spell underline
 let &t_Cs = "\e[4:3m\e[58:5:1m"
 let &t_Ce = "\e[4:0m\e[59m"
 hi SpellBad gui=undercurl guisp=Red term=undercurl cterm=undercurl
+
+" spell file
+set spellfile=~/.vim_runtime/spell/words.utf-8.add
