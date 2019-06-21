@@ -169,3 +169,21 @@ hi SpellBad gui=undercurl guisp=Red term=undercurl cterm=undercurl
 
 " spell file
 set spellfile=~/.vim_runtime/spell/words.utf-8.add
+
+" terminal mode settings
+tnoremap <F3> <C-\><C-n>:set nonumber nornu<cr>
+
+" autocommands for file types
+augroup my_au_group
+	" clear the group in case of reloading
+	autocmd!
+
+	" Enable spellcheck for markdown files
+	autocmd Filetype markdown :set spell
+
+	" Set filetype for docker files
+	autocmd BufAdd Dockerfile.* :set filetype=dockerfile
+
+	" no numbering for terminal
+	autocmd TerminalOpen set nonumber nornu
+augroup END
