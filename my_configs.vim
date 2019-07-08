@@ -171,9 +171,9 @@ hi SpellBad gui=undercurl guisp=Red term=undercurl cterm=undercurl
 set spellfile=~/.vim_runtime/spell/words.utf-8.add
 
 " terminal mode settings
-tnoremap <F3> <C-\><C-n>:set nonumber nornu<cr>
+tnoremap <silent> <F3> <C-\><C-n>:set nonumber nornu<cr>
 
-" autocommands for file types
+" auto commands for file types
 augroup my_au_group
 	" clear the group in case of reloading
 	autocmd!
@@ -186,4 +186,10 @@ augroup my_au_group
 
 	" no numbering for terminal
 	autocmd TerminalOpen set nonumber nornu
+
+	" autoread
+	set autoread
+	" autoload changes (with prompt)
+	autocmd FocusGained,BufEnter * :checktime
 augroup END
+
