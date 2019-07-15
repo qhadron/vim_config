@@ -158,14 +158,17 @@ function! LightlineFilename()
   return filename . modified
 endfunction
 
+LightlineReload
+
 " vim auto-pairs settings
 let g:AutoPairsFlyMode = 0
-let g:AutoPairsShrotcutToggle = '<leader>P'
+let g:AutoPairsShortcutToggle = '<leader>P'
 
 " spell underline
 let &t_Cs = "\e[4:3m\e[58:5:1m"
 let &t_Ce = "\e[4:0m\e[59m"
 hi SpellBad gui=undercurl guisp=Red term=undercurl cterm=undercurl
+
 
 " spell file
 set spellfile=~/.vim_runtime/spell/words.utf-8.add
@@ -182,7 +185,7 @@ augroup my_au_group
 	autocmd Filetype markdown :set spell
 
 	" Set filetype for docker files
-	autocmd BufAdd Dockerfile.* :set filetype=dockerfile
+	autocmd BufNewFile,BufRead Dockerfile.* :setfiletype dockerfile
 
 	" no numbering for terminal
 	autocmd TerminalOpen set nonumber nornu
@@ -193,3 +196,6 @@ augroup my_au_group
 	autocmd FocusGained,BufEnter * :checktime
 augroup END
 
+" markdown plugin speed improvements
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_new_list_item_indent = 0
