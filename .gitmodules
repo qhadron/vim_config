@@ -4,3 +4,6 @@
 [submodule "my_plugins/vim-unimpaired"]
 	path = my_plugins/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "my_plugins/vim-easymotion"]
+	path = my_plugins/vim-easymotion
+	url = https://github.com/easymotion/vim-easymotion.git
