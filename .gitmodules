@@ -7,3 +7,6 @@
 [submodule "my_plugins/vim-easymotion"]
 	path = my_plugins/vim-easymotion
 	url = https://github.com/easymotion/vim-easymotion.git
+[submodule "my_plugins/fzf.vim"]
+	path = my_plugins/fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git

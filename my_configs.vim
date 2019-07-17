@@ -124,10 +124,42 @@ nnoremap <F2> :YcmCompleter RefactorRename
 let g:ycm_key_detailed_diagnostics = '<c-c><c-d>'
 let g:ycm_key_invoke_completion = '<C-Space>'
 
-" CtrlP settings
-let g:ctrlp_switch_buffer = 'et'
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-let g:ctrlp_cmd = 'CtrlPLastMode --dir'
+" use fzf as fuzzy finder if available
+if isdirectory(expand("~/.fzf"))
+	set rtp+=~/.fzf
+
+	" [Buffers] Jump to the existing window if possible
+	let g:fzf_buffers_jump = 0
+
+	" override ctrlf
+	silent! unmap <c-f>
+	nnoremap <silent> <c-f> :Files<CR>
+
+	" Find mappings
+	nnoremap <silent> <leader>fm <plug>(fzf-maps-n)
+	" Find files
+	nnoremap <silent> <leader>ff :Files<CR>
+	" Find buffers
+	nnoremap <silent> <leader>fb :Buffers<CR>
+	" Find commits
+	nnoremap <silent> <leader>fg :Commits<CR>
+	" Find commands
+	nnoremap <silent> <leader>fc :Commands<CR>
+	" Find (current buffer) lines
+	nnoremap <silent> <leader>fl :BLines<CR>
+	" Find global lines
+	nnoremap <silent> <leader>fL :Lines<CR>
+	" Find filetypes
+	nnoremap <silent> <leader>fL :Lines<CR>
+else
+	" let user know to install fzf
+	echo "fzf is not installed..."
+
+	" CtrlP settings
+	let g:ctrlp_switch_buffer = 'et'
+	let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard', 'find %s -type f']
+	let g:ctrlp_cmd = 'CtrlPLastMode --dir'
+endif
 
 " lightline (status line) settings
 set noshowmode
